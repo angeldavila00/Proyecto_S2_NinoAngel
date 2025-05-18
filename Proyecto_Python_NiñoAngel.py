@@ -1,6 +1,6 @@
 from funciones.FuncionesGastos import * 
 from tabulate import tabulate
-from datetime import date, datetime 
+from datetime import date, datetime, timedelta 
 listaGastos=abrirJSON()
 
 booleano=True
@@ -114,32 +114,67 @@ while(booleano):
                             if fecha1 <= fechaForm <= fecha2:
                                 for a in listaGastos[q]:
                                     print(f"{a}\t{listaGastos[q][a]}") #\t tabulador
-
-                                    
-
-
         elif(confirmacion==4):
                 print("Regresando al menu principal!")
     if (opcion==3):
         print("================================")
         print("======Calcular total de gastos==")
         print("================================")
-        print("1. selecciona el periodo de calculo:\n ")
+        print(" selecciona el periodo de calculo:\n ")
         print("1. Calcular total diario\n")
         print("2. Calcular total semanal\n")
         print("3. Calcular total mensual\n")
         print("4. Regresar al menú principal\n")
         print("================================")
         opcioncal=int(input(""))
+        ##Calcular total diario
         if (opcioncal==1):
-            print("")
+            fechaHoy=datetime.today().date()
+            gastosDiarios=[]
+            totalGastos=0
+            for i in range (len(listaGastos)):
+                fechaGastos=datetime.strptime(listaGastos[i]["fechas"],"%Y-%m-%d").date()
+                if (fechaGastos==fechaHoy):
+                    gastosDiarios.append(listaGastos[i])
+                    totalGastos += listaGastos[i]["montoGasto"]
+            if gastosDiarios:
+                print(tabulate(gastosDiarios, headers="keys", tablefmt="pipe"))
+                print(f"\nTotal Gastos diarios: {totalGastos}")
+            else:
+                print("No existen gastos en el dia de hoy!!!!")
+        #######Calcular total semanal
         elif(opcioncal==2):
-            print("")
-        elif(opcioncal==3):
-            print("")
-        elif(opcioncal==4):
-            print("")
-
+                fechaHoy=datetime.today().date()
+                fechaSemana= fechaHoy- timedelta(days=7)
+                gastoSemanal=[]
+                totalGastos=0
+                for i in range (len(listaGastos)):
+                    fechaGastos=datetime.strptime(listaGastos[i] ["fecha"],"%Y-%m-&d").date()
+                    if (fechaSemana <= fechaGastos <= fechaHoy):
+                        gastoSemanal.append(listaGastos[i])
+                        totalGastos += listaGastos[i]["montoGasto"]
+                if gastoSemanal:
+                    print(tabulate(gastoSemanal, headers="keys", tablefmt="pipe"))
+                    print("\nTotal Gastos diarios: {totalGastos}")
+                else:
+                    print("No existen gastos esta semanas!!!!")
+    elif(opcioncal==3):
+            fechaHoy=datetime.today().date()
+            fechaMes=fechaHoy-timedelta(days=30)
+            gastoMes=[]
+            totalGastos=0
+            for i in range (len(listaGastos)):
+                fechaMes=datetime.strptime(listaGastos[i]["fecha"],"%Y-%m-&d").date()
+                if(fechaMes<=listaGastos<=fechaHoy):
+                    gastoMes.append(listaGastos[i])
+                    totalGastos += listaGastos[i]["montoGasto"]
+            if gastoMes:
+                print (tabulate(gastoMes, headers="keys", tablefmt="pipe") )
+                print(f"\nTotal gasto Mensual: {totalGastos}")
+            else:
+                print("No hay registros del mes")
+    elif(opcioncal==4):
+            print("Regresando al menu principal")
     if(opcion==4):
         print("=============================================") 
         print("==========Generar Reporte de Gastos==========")
@@ -154,7 +189,6 @@ while(booleano):
         if(opcion==1):
             for i in range (len(listaGastos)):
                 print(tabulate(listaGastos, tablefmt="github"))
-
 
     if (opcion==5):
         print("¿Desea salir del programa? (S/N):")
