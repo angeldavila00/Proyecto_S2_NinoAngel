@@ -1,6 +1,6 @@
 from funciones.FuncionesGastos import * 
 from tabulate import tabulate
-
+from datetime import date, datetime 
 listaGastos=abrirJSON()
 
 booleano=True
@@ -34,18 +34,23 @@ while(booleano):
         unidades=str(input("Cantidad: "))
         categoria=str(input("Categoria ( comida, transporte, entretenimientos, otros):  "))
         info=str(input("Descripcion(opcional): "))
-        
+        print("Ingresa la fecha del gasto: ")
+        dia = int(input("Dia: "))
+        mes = int(input("Mes: "))
+        ano = int(input("Año: "))
+        hora= datetime.now().strftime("%H:%M:%S")
         #Aqui hacemos un for para confirmar si deseas guardar el gasto
         print(" ")
         dicGastonuevo={
             "montoGasto":monto,
             "cantidad":unidades,
             "categoria":categoria,
-            "descripcion":info
+            "descripcion":info,
+            "fechas": str(datetime(ano, mes, dia).date()),
+            "hora":hora
         }
         confirmacion=input("Introduzca " ' s '"para guardar o " ' c ' "para cancelar: ")
         print("=============================================\n")
-        
         if(confirmacion=='s'):
             listaGastos.append(dicGastonuevo)
             guardarJSON(listaGastos)
@@ -73,29 +78,48 @@ while(booleano):
                     for i in range(len(listaGastos)):
                         if( listaGastos[i]["categoria"] == "comida"):
                             listaComida = [listaGastos[i]]
-                            print(tabulate(listaGastos, tablefmt="double_outline"))
+                            print(tabulate(listaComida, tablefmt="fancy_outline"))
                 elif(categoria==2):
                     for i in range(len(listaGastos)):
                         if( listaGastos[i]["categoria"] == "transporte"):
                             listaTransporte = [listaGastos[i]]
-                            print(tabulate(listaGastos, tablefmt="double_outline"))
+                            print(tabulate(listaTransporte, tablefmt="double_outline"))
                 elif(categoria==3):
                     for i in range(len(listaGastos)):
                         if( listaGastos[i]["categoria"] == "entretenimiento"):
                             listaEntretenimiento = [listaGastos[i]]
-                            print(tabulate(listaGastos, tablefmt="double_outline"))
+                            print(tabulate(listaEntretenimiento, tablefmt="double_outline"))
                 elif(categoria==4):
                     for i in range(len(listaGastos)):
                         if( listaGastos[i]["categoria"] == "otros"):
                             listaOtros = [listaGastos[i]]
-                            print(tabulate(listaGastos, tablefmt="double_outline"))
+                            print(tabulate(listaOtros, tablefmt="double_outline"))
                             
-                elif(confirmacion==3):#FALTAAAAAAAAAAA TERMINARRR
-                    fechaInicio=int(input("Ingrese la fecha del inicio de busqueda"))
-                    fechaFinal=(int(input("Ingrese la fecha del final de busqueda")))
+        elif(confirmacion==3):#FALTAAAAAAAAAAA TERMINARRR  Filtrar por rango de fechas
+                        print("Ingresa la fecha inicial!!!")
+                        mes=int(input("Mes: "))
+                        dia= int(input("Dia: "))
+                        ano=int(input("Año: "))
+                        fecha1 =datetime(ano,mes,dia).date()
 
-                elif(confirmacion==4):
-                    print("Regresando al menu principal!")
+                        print("Ingresa fecha final!!!")
+                        dia= int(input("Dia: "))
+                        mes=int(input("Mes: "))
+                        ano=int(input("Año: "))
+                        fecha2= datetime(ano,mes,dia).date()
+                        for q in range(len(listaGastos)):
+                            fechaStr= listaGastos[q]["fechas"]
+                            fechaForm = datetime.strptime(fechaStr, "%Y-%m-%d").date()#convierte cadena a fecha
+                            print("============================")
+                            if fecha1 <= fechaForm <= fecha2:
+                                for a in listaGastos[q]:
+                                    print(f"{a}\t{listaGastos[q][a]}") #\t tabulador
+
+                                    
+
+
+        elif(confirmacion==4):
+                print("Regresando al menu principal!")
     if (opcion==3):
         print("================================")
         print("======Calcular total de gastos==")
