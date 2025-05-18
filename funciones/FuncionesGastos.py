@@ -9,3 +9,4 @@ def abrirJSON():
 def guardarJSON(dic):
     with open("./data/data.json",'w') as outFile:
         json.dump(dic,outFile)
+

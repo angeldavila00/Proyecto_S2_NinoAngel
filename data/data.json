@@ -1,7 +1,1 @@
-[
-    {
-
-
-        
-    }
-]
+[{"montoGasto": 1000000, "cantidad": "6", "categoria": "comida", "descripcion": "salud a la borrachera"}, {"montoGasto": 1, "cantidad": "0", "categoria": "otros", "descripcion": "se me perdio"}, {"montoGasto": 2555555555555555, "cantidad": "1", "categoria": "comida", "descripcion": "pan"}]
