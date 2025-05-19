@@ -1,99 +1,22 @@
 [
     {
-        "montoGasto": 3000,
-        "cantidad": "2",
-        "categoria": "comida",
-        "descripcion": "pan",
-        "fechas": "2000-05-03"
+        "id": 1,
+        "monto": 3000,
+        "unidades": "2",
+        "categoria": "transporte",
+        "info": "moto",
+        "dia": 2,
+        "mes": 2,
+        "ano": 2000,
+        "hora": "13:19:06"
     },
     {
-        "montoGasto": 3566,
-        "cantidad": "1",
+        "id": 2,
+        "montoGasto": 2000,
+        "cantidad": "3",
         "categoria": "transporte",
         "descripcion": "bus",
-        "fechas": "2000-02-05"
-    },
-    {
-        "montoGasto": 3000,
-        "cantidad": "2",
-        "categoria": "entretenimiento",
-        "descripcion": "play",
-        "fechas": "2000-08-05"
-    },
-    {
-        "montoGasto": 800,
-        "cantidad": "3",
-        "categoria": "comida",
-        "descripcion": "pan",
-        "fechas": "2000-01-03"
-    },
-    {
-        "montoGasto": 2000,
-        "cantidad": "1",
-        "categoria": "entretenimiento",
-        "descripcion": "moto",
-        "fechas": "2000-04-02"
-    },
-    {
-        "montoGasto": 2333,
-        "cantidad": "2",
-        "categoria": "transporte",
-        "descripcion": "carro",
-        "fechas": "2004-05-04"
-    },
-    {
-        "montoGasto": 2000,
-        "cantidad": "2",
-        "categoria": "comida",
-        "descripcion": "panessss",
-        "fechas": "2000-02-01",
-        "hora": "25-05-18"
-    },
-    {
-        "montoGasto": 2000,
-        "cantidad": "2",
-        "categoria": "comida",
-        "descripcion": "perro",
-        "fechas": "2000-03-02",
-        "hora": "00:00:00"
-    },
-    {
-        "montoGasto": 2000,
-        "cantidad": "3",
-        "categoria": "transporte",
-        "descripcion": "taxi",
-        "fechas": "2000-03-02"
-    },
-    {
-        "montoGasto": 2000,
-        "cantidad": "2",
-        "categoria": "comida",
-        "descripcion": "hamburguesa",
-        "fechas": "2000-03-02",
-        "hora": "04:00:49"
-    },
-    {
-        "montoGasto": 2000,
-        "cantidad": "2",
-        "categoria": "comida",
-        "descripcion": "sal",
-        "fechas": "2025-05-18",
-        "hora": "05:00:35"
-    },
-    {
-        "montoGasto": 3000,
-        "cantidad": "1",
-        "categoria": "transporte",
-        "descripcion": "uber",
-        "fechas": "2025-05-18",
-        "hora": "05:21:26"
-    },
-    {
-        "montoGasto": 4000,
-        "cantidad": "3",
-        "categoria": "comida",
-        "descripcion": "arroz chino",
-        "fechas": "2025-05-18",
-        "hora": "05:21:51"
+        "fechas": "2000-02-02",
+        "hora": "12:59:55"
     }
 ]

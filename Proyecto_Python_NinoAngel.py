@@ -18,7 +18,8 @@ while(booleano):
     print("2. Lista de gastos")
     print("3. Calcular total de gastos")
     print("4. Generar reporte de gastos")
-    print("5. Salir")
+    print("5. Infomacion reporte de gastos")
+    print("6. Salir")
     print("=============================================")
 
     print(" ")
@@ -27,13 +28,13 @@ while(booleano):
 
     if(opcion==1):
         print("=============================================")
-        print("==========Registrar Nuevo Gasto==========\n")
+        print("==========Registrar Nuevo Gasto============\n")
+        print("=============================================")
         print("Ingrese la informacion del gasto: \n")
-        
         monto=int(input("- Monto del gasto:  "))
-        unidades=str(input("Cantidad: "))
-        categoria=str(input("Categoria ( comida, transporte, entretenimientos, otros):  "))
-        info=str(input("Descripcion(opcional): "))
+        unidades=(input("Cantidad: "))
+        categoria=(input("Categoria ( comida, transporte, entretenimientos, otros):  "))
+        info=(input("Descripcion(opcional): "))
         print("Ingresa la fecha del gasto: ")
         dia = int(input("Dia: "))
         mes = int(input("Mes: "))
@@ -42,6 +43,7 @@ while(booleano):
         #Aqui hacemos un for para confirmar si deseas guardar el gasto
         print(" ")
         dicGastonuevo={
+            "id": (listaGastos[len(listaGastos)-1]["id"])+1,
             "montoGasto":monto,
             "cantidad":unidades,
             "categoria":categoria,
@@ -58,7 +60,7 @@ while(booleano):
         else:
             print("Gasto no ingresado")
         print(" ")
-#################################################################################################################3
+##Menu Dos
     if(opcion==2):
         print("=============================================")
         print("================Lista De Gastos================")
@@ -94,8 +96,9 @@ while(booleano):
                         if( listaGastos[i]["categoria"] == "otros"):
                             listaOtros = [listaGastos[i]]
                             print(tabulate(listaOtros, tablefmt="double_outline"))
+                else: print("¡No existen gastos!")
                             
-        elif(confirmacion==3):#FALTAAAAAAAAAAA TERMINARRR  Filtrar por rango de fechas
+        elif(confirmacion==3):#Filtrar por rango de fechas
                         print("Ingresa la fecha inicial!!!")
                         mes=int(input("Mes: "))
                         dia= int(input("Dia: "))
@@ -116,7 +119,8 @@ while(booleano):
                                     print(f"{a}\t{listaGastos[q][a]}") #\t tabulador
         elif(confirmacion==4):
                 print("Regresando al menu principal!")
-    if (opcion==3):
+        else: print("¡Ingrese una opcion valida!")
+    if(opcion==3):
         print("================================")
         print("======Calcular total de gastos==")
         print("================================")
@@ -158,7 +162,7 @@ while(booleano):
                     print("\nTotal Gastos diarios: {totalGastos}")
                 else:
                     print("No existen gastos esta semanas!!!!")
-    elif(opcioncal==3):
+        elif(opcioncal==3):
             fechaHoy=datetime.today().date()
             fechaMes=fechaHoy-timedelta(days=30)
             gastoMes=[]
@@ -173,7 +177,7 @@ while(booleano):
                 print(f"\nTotal gasto Mensual: {totalGastos}")
             else:
                 print("No hay registros del mes")
-    elif(opcioncal==4):
+        elif(opcioncal==4):
             print("Regresando al menu principal")
     if(opcion==4):
         print("=============================================") 
@@ -190,13 +194,46 @@ while(booleano):
             for i in range (len(listaGastos)):
                 print(tabulate(listaGastos, tablefmt="github"))
 
-    if (opcion==5):
+    if(opcion==5):
+        print("=============================================") 
+        print("=======Informacion Reporte de Gastos=========")
+        print("=============================================")
+        print("\n")
+        print("1. Actualizar reporte de gasto")
+        print("2. Eliminar reporte de gasto")
+        print("3. Visualizar reporte de gasto individual")
+        print("4. Regresar al menú principal")
+        print("=============================================")
+        opcionIndividual=int(input("Ingrese una opcion numerica:  "))
+        if (opcionIndividual==1):
+            print("=============================================")
+            print("INFORMACION QUE VAS ACTUALIZAR!!!")
+            print("=============================================")
+            opcionIndividual = int(input("Por favor ingresar el numero del Gasto deseado a modificar:\n "))
+            mostrarUna(listaGastos,opcionIndividual)
+
+            usuarioTemporal = listaGastos[opcionIndividual-1]
+            montoTemporal=int(input("Monto del gasto:  "))
+            unidadesTemporal=(input("Cantidad: "))
+            categoriaTemporal=(input("Categoria ( comida, transporte, entretenimientos, otros):  "))
+            infoTemporal=(input("Descripcion(opcional): "))
+            print("Ingresa la fecha del gasto: ")
+            diaTemporal = int(input("Dia: "))
+            mesTemporal = int(input("Mes: "))
+            anoTemporal = int(input("Año: "))
+            horaTemporal= datetime.now().strftime("%H:%M:%S")
+
+            
+            diccionarioAgregar={"id":listaGastos[opcionIndividual-1]["id"], "monto":montoTemporal,"unidades":unidadesTemporal,"categoria":categoriaTemporal,"info":infoTemporal,"hora":horaTemporal}
+            listaGastos[opcionIndividual-1]=diccionarioAgregar
+            guardarJSON(listaGastos)
+    if (opcion==6):
         print("¿Desea salir del programa? (S/N):")
-        confirmacion2= str(input("Dime la respuesta: "))
-        if(confirmacion2=="s"):
+        confirmacion2= (input("Dime la respuesta: "))
+        if((confirmacion2=="s") or(confirmacion2=="S")):
             print("HASTA LUEGO!!!!!")
             booleano= False
-        elif(confirmacion2=="n"):
+        elif((confirmacion2=="n")or (confirmacion2=="n")):
             print("No es una opción válida")
             
 
