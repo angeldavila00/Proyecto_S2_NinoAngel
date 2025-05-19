@@ -4,7 +4,7 @@ from datetime import date, datetime, timedelta
 listaGastos=abrirJSON()
 
 booleano=True
-
+#
 while(booleano):
     listaGastos=abrirJSON()
     #En este punto se actualiza la lista de gastos cada vez que se hace un cambio
