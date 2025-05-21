@@ -1,4 +1,4 @@
-from funciones.FuncionesGastos import *
+from funciones.FuncionesJson import *
 from funciones.funcionesLista import * 
 from tabulate import tabulate
 from datetime import date, datetime, timedelta 
@@ -20,10 +20,8 @@ while(booleano):
     print("2. Lista de gastos")
     print("3. Calcular total de gastos")
     print("4. Generar reporte de gastos")
-    print("5. Infomacion reporte de gastos")
-    print("6. Salir")
+    print("5. Salir")
     print("=============================================")
-
     print(" ")
     opcion=int(input("Ingresa una opcion numerica: "))
     print(" ")
@@ -38,9 +36,7 @@ while(booleano):
         categoria=str(input("Categoria ( comida, transporte, entretenimientos, otros):  "))
         info=str(input("Descripcion(opcional): "))
         print("Ingresa la fecha del gasto: ")
-        dia = int(input("Dia: "))
-        mes = int(input("Mes: "))
-        ano = int(input("Año: "))
+        fecha_actual= str(date.today())
         hora= datetime.now().strftime("%H:%M:%S")
         #Aqui hacemos un for para confirmar si deseas guardar el gasto
         print(" ")
@@ -49,7 +45,7 @@ while(booleano):
             "cantidad":unidades,
             "categoria":categoria,
             "descripcion":info,
-            "fechas": str(datetime(ano, mes, dia).date()),
+            "fechas": fecha_actual,
             "hora":hora
         }
         confirmacion=input("Introduzca " ' s '"para guardar o " ' c ' "para cancelar: ")
@@ -148,7 +144,7 @@ while(booleano):
                         totalGastos += listaGastos[i]["montoGasto"]
                 if gastoSemanal:
                     print(tabulate(gastoSemanal, headers="keys", tablefmt="pipe"))
-                    print("\nTotal Gastos diarios: {totalGastos}")
+                    print(f"\nTotal Gastos semanal: {totalGastos}")
                 else:
                     print("No existen gastos esta semanas!!!!")
     ##Calcular total  MENSUAL
@@ -169,7 +165,7 @@ while(booleano):
                     print("No hay registros del mes")
         elif(opcioncal==4):
                 print("Regresando al menu principal")
-    if(opcion==4):
+    if (opcion==4):
             print("=============================================") 
             print("==========Generar Reporte de Gastos==========")
             print("=============================================")
@@ -179,27 +175,39 @@ while(booleano):
             print("3. Reporte mensual")
             print("4. Regresar al menú principal")
             print("=============================================")
-            opcion=int(input())
-            if(opcion==1):
-                for i in range (len(listaGastos)):
-                    print(tabulate(listaGastos, tablefmt="github"))
-    if(opcion==5):
-        print("=============================================") 
-        print("=======Informacion Reporte de Gastos=========")
-        print("=============================================")
-        print("\n")
-        print("1. Actualizar reporte de gasto")
-        print("2. Eliminar reporte de gasto")
-        print("3. Visualizar reporte de gasto individual")
-        print("4. Regresar al menú principal")
-        print("=============================================")
-        opcionIndividual=int(input("Ingrese una opcion numerica:  "))
-        if (opcionIndividual==1):
-            print("=============================================")
-            print("INFORMACION QUE VAS ACTUALIZAR!!!")
-            print("=============================================")
-
-    if (opcion==6):
+            opcioncal=int(input())
+            if(opcioncal == 1 ):
+                totalDiario(listaGastos)
+                (totalComida, totalTransporte, totalEntretenimiento, totalOtros, totales )=totalDiario(listaGastos)
+                print("")
+                opcionGuardar= int(input("1. Guardar registro, 2 .No guardar registro: "))
+                if(opcionGuardar==1):
+                    temporal = guardarReporte (opcionGuardar, totalComida, totalTransporte, totalEntretenimiento, totalOtros)
+                    guardarlos(logsJSON,guardarJSON,temporal,listaGastos)
+            elif(opcioncal==2):
+                totalSemana(listaGastos)
+                print("")
+                (totalComida, totalTransporte, totalEntretenimiento, totalOtros, totales )=totalSemana(listaGastos)
+                print("")
+                opcionGuardar= int(input("1. Guardar registro, 2 .No guardar registro: "))
+                if(opcionGuardar==1):
+                    temporal = guardarReporte (opcionGuardar, totalComida, totalTransporte, totalEntretenimiento, totalOtros)
+                    guardarlos(logsJSON,guardarJSON,temporal,listaGastos)
+            elif(opcioncal==3):
+                totalMes(listaGastos)
+                print("")
+                (totalComida, totalTransporte, totalEntretenimiento, totalOtros, totales )=totalMes(listaGastos)
+                print("")
+                opcionGuardar= int(input("1. Guardar registro, 2 .No guardar registro: "))
+                if(opcionGuardar==1):
+                    temporal = guardarReporte (opcionGuardar, totalComida, totalTransporte, totalEntretenimiento, totalOtros)
+                    guardarlos(logsJSON,guardarJSON,temporal,listaGastos)
+            elif(opcioncal==4):
+                print("Regresando al menu principal")
+            else:
+                print("\nOpcion no valida\nRegresando al menu principal\n")
+                
+    if (opcion==5):
         print("¿Desea salir del programa? (S/N):")
         confirmacion2= str(input("Dime la respuesta: "))
         if((confirmacion2=="s") or (confirmacion2=="S") ):
