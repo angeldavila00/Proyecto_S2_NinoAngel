@@ -72,19 +72,19 @@ def comida(i, totales, totalComida):
     if i["categoria"] == "comida":
         totalComida += i["montoGasto"]
         totales["comida"] = totalComida
-        return totalComida
+    return totalComida
 
 def transporte(i,totales, totalTransporte):
     if i["categoria"] == "transporte":
         totalTransporte += i["montoGasto"]
         totales["transporte"] = totalTransporte
-        return totalTransporte
+    return totalTransporte
 
 def entretenimiento(i,totales, totalEntretenimiento):
     if i["categoria"] == "entretenimiento":
         totalEntretenimiento += i["montoGasto"]
         totales["transporte"] = totalEntretenimiento
-        return totalEntretenimiento
+    return totalEntretenimiento
 
 def otros(i,totales, totalOtros):
     if i["categoria"] == "otros":
@@ -102,7 +102,8 @@ def guardarReporte (opcionGuardar, totalComida, totalTransporte, totalEntretenim
             "Otros": totalOtros
         }
     else: 
-        return temporal
+        print("")
+    return temporal
 
 def guardarlos(logsJSON,guardarJSON, temporal, listaGastos):
     logsJSON(temporal)

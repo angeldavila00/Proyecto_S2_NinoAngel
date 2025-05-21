@@ -1,1 +1,8 @@
-[null]
+[
+    {
+        "comida": 3,
+        "Transporte": 0,
+        "Entretenimiento": 0,
+        "Otros": 0
+    }
+]

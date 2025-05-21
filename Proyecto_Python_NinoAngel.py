@@ -206,7 +206,7 @@ while(booleano):
                 print("Regresando al menu principal")
             else:
                 print("\nOpcion no valida\nRegresando al menu principal\n")
-                
+
     if (opcion==5):
         print("¿Desea salir del programa? (S/N):")
         confirmacion2= str(input("Dime la respuesta: "))
