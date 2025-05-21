@@ -9,13 +9,11 @@ Este proyecto es una aplicación de consola desarrollada en Python que permite a
 
 ## 📑 Tabla de Contenidos
 
-- [📋 Descripción General](#-descripción-general)
+- [📋 Explicacion del Proyecto](#-explicacion-del-proyecto)
 - [🧩 Funcionalidades Principales](#-funcionalidades-principales)
 - [🛠️ Instalación y Configuración](#️-instalación-y-configuración)
-- [▶️ Ejecución](#️-ejecución)
-- [📁 Estructura del Proyecto](#-estructura-del-proyecto)
-- [🧪 Resultado Esperado](#-resultado-esperado)
-- [👤 Autor](#-autor)
+
+
 
 ---
 ## 📋 Explicación del Proyecto
