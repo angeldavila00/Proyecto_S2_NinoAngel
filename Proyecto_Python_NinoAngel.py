@@ -31,7 +31,7 @@ while(booleano):
         print("==========Registrar Nuevo Gasto============\n")
         print("=============================================")
         print("Ingrese la informacion del gasto: \n")
-        monto=int(input("- Monto del gasto:  "))
+        monto=int(input("Monto del gasto:  "))
         unidades=(input("Cantidad: "))
         categoria=(input("Categoria ( comida, transporte, entretenimientos, otros):  "))
         info=(input("Descripcion(opcional): "))
@@ -43,7 +43,6 @@ while(booleano):
         #Aqui hacemos un for para confirmar si deseas guardar el gasto
         print(" ")
         dicGastonuevo={
-            "id": (listaGastos[len(listaGastos)-1]["id"])+1,
             "montoGasto":monto,
             "cantidad":unidades,
             "categoria":categoria,
@@ -53,12 +52,12 @@ while(booleano):
         }
         confirmacion=input("Introduzca " ' s '"para guardar o " ' c ' "para cancelar: ")
         print("=============================================\n")
-        if(confirmacion=='s'):
+        if((confirmacion=="s") or (confirmacion=="S")):
             listaGastos.append(dicGastonuevo)
             guardarJSON(listaGastos)
             print("Gasto nuevo guardado!")
         else:
-            print("Gasto no ingresado")
+            print("Gasto no Guardado!!!")
         print(" ")
 ##Menu Dos
     if(opcion==2):
@@ -99,27 +98,15 @@ while(booleano):
                 else: print("¡No existen gastos!")
                             
         elif(confirmacion==3):#Filtrar por rango de fechas
-                        print("Ingresa la fecha inicial!!!")
-                        mes=int(input("Mes: "))
-                        dia= int(input("Dia: "))
-                        ano=int(input("Año: "))
-                        fecha1 =datetime(ano,mes,dia).date()
+            fecha_inicio = input("Ingrese la fecha de inicio (YYYY-MM-DD): ")
+            fecha_fin = input("Ingrese la fecha de fin (YYYY-MM-DD): ")
+            gastos_filtrados = [gasto for gasto in listaGastos if fecha_inicio <= gasto['fechas'] <= fecha_fin]
+            print(tabulate(gastos_filtrados, tablefmt="double_outline")) #\t tabulador
 
-                        print("Ingresa fecha final!!!")
-                        dia= int(input("Dia: "))
-                        mes=int(input("Mes: "))
-                        ano=int(input("Año: "))
-                        fecha2= datetime(ano,mes,dia).date()
-                        for q in range(len(listaGastos)):
-                            fechaStr= listaGastos[q]["fechas"]
-                            fechaForm = datetime.strptime(fechaStr, "%Y-%m-%d").date()#convierte cadena a fecha
-                            print("============================")
-                            if fecha1 <= fechaForm <= fecha2:
-                                for a in listaGastos[q]:
-                                    print(f"{a}\t{listaGastos[q][a]}") #\t tabulador
         elif(confirmacion==4):
-                print("Regresando al menu principal!")
-        else: print("¡Ingrese una opcion valida!")
+            print("Regresando al menu principal!")
+        else:
+            print("¡Ingrese una opcion valida!")
     if(opcion==3):
         print("================================")
         print("======Calcular total de gastos==")
@@ -153,7 +140,7 @@ while(booleano):
                 gastoSemanal=[]
                 totalGastos=0
                 for i in range (len(listaGastos)):
-                    fechaGastos=datetime.strptime(listaGastos[i] ["fecha"],"%Y-%m-&d").date()
+                    fechaGastos=datetime.strptime(listaGastos[i] ["fecha"],"%Y-%m-%d").date()
                     if (fechaSemana <= fechaGastos <= fechaHoy):
                         gastoSemanal.append(listaGastos[i])
                         totalGastos += listaGastos[i]["montoGasto"]
@@ -168,7 +155,7 @@ while(booleano):
             gastoMes=[]
             totalGastos=0
             for i in range (len(listaGastos)):
-                fechaMes=datetime.strptime(listaGastos[i]["fecha"],"%Y-%m-&d").date()
+                fechaMes=datetime.strptime(listaGastos[i]["fecha"],"%Y-%m-%d").date()
                 if(fechaMes<=listaGastos<=fechaHoy):
                     gastoMes.append(listaGastos[i])
                     totalGastos += listaGastos[i]["montoGasto"]
@@ -210,23 +197,7 @@ while(booleano):
             print("INFORMACION QUE VAS ACTUALIZAR!!!")
             print("=============================================")
             opcionIndividual = int(input("Por favor ingresar el numero del Gasto deseado a modificar:\n "))
-            mostrarUna(listaGastos,opcionIndividual)
 
-            usuarioTemporal = listaGastos[opcionIndividual-1]
-            montoTemporal=int(input("Monto del gasto:  "))
-            unidadesTemporal=(input("Cantidad: "))
-            categoriaTemporal=(input("Categoria ( comida, transporte, entretenimientos, otros):  "))
-            infoTemporal=(input("Descripcion(opcional): "))
-            print("Ingresa la fecha del gasto: ")
-            diaTemporal = int(input("Dia: "))
-            mesTemporal = int(input("Mes: "))
-            anoTemporal = int(input("Año: "))
-            horaTemporal= datetime.now().strftime("%H:%M:%S")
-
-            
-            diccionarioAgregar={"id":listaGastos[opcionIndividual-1]["id"], "monto":montoTemporal,"unidades":unidadesTemporal,"categoria":categoriaTemporal,"info":infoTemporal,"hora":horaTemporal}
-            listaGastos[opcionIndividual-1]=diccionarioAgregar
-            guardarJSON(listaGastos)
     if (opcion==6):
         print("¿Desea salir del programa? (S/N):")
         confirmacion2= (input("Dime la respuesta: "))

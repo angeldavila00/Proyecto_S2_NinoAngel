@@ -12,18 +12,6 @@ def guardarJSON(dic):
 
             
             
-def mostrarUna(listaGastos,opcionIndividual):
-    print("#################")
-    print("#### Gasto#",opcionIndividual," ####")
-    print("#################")
-    print("ID:", listaGastos[opcionIndividual-1]["id"])
-    print("MontoGasto:",listaGastos[opcionIndividual-1]["montoGasto"])
-    print("Cantidad:",listaGastos[opcionIndividual-1]["cantidad"])
-    print("Categoria",listaGastos[opcionIndividual-1]["categoria"])
-    print("Descripcion",listaGastos[opcionIndividual-1]["descripcion"])
-    print("Fechas",listaGastos[opcionIndividual-1]["fechas"])
-    print("Hora",listaGastos[opcionIndividual-1]["hora"])
-
 def cargarLogs():
     dicFinal=[]
     with open("./data/logs.json",'r') as openFile:
