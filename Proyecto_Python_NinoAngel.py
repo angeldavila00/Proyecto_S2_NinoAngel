@@ -42,6 +42,7 @@ while(booleano):
         hora= datetime.now().strftime("%H:%M:%S")
         #Aqui hacemos un for para confirmar si deseas guardar el gasto
         print(" ")
+        
         dicGastonuevo={
             "montoGasto":monto,
             "cantidad":unidades,
