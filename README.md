@@ -29,6 +29,7 @@ Este proyecto es una aplicación de consola desarrollada en Python que permite a
 
 ## 🧩 Funcionalidades Principales
 
+
 ### ✅ Registrar Gasto
 - El usuario puede ingresar:
   - Monto
@@ -75,4 +76,6 @@ git clone https://github.com/angeldavila00/Proyecto_S2_NinoAngel.git
 cd Proyecto_S2_NinoAngel
 python - python3: Proyecto_Python_NinoAngel.py
 pip install tabulate
-link para ver el video de la explicación https://youtu.be/YQetV2aazAM
+```
+
+<p align="center"><strong><a href="https://www.youtube.com/watch?v=YQetV2aazAM">HAGA CLICK SOBRE ESTE ENLACE PARA VER EL VIDEO DE LA EXPLICACION </a></strong> 
