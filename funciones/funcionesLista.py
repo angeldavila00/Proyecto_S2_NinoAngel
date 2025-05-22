@@ -20,10 +20,12 @@ def recorrerLista(listaGastos):
 def totalDiario(listaGastos):
     fecha_actual=datetime.today().date()
     gastosReportes=[]
+    totalGastos=0
     for i in range (len(listaGastos)):
         fechaGasto=datetime.strptime(listaGastos[i]["fechas"],  "%Y-%m-%d").date() 
         if (fechaGasto==fecha_actual):
             gastosReportes.append(listaGastos[i])
+            totalGastos += listaGastos[i]["montoGasto"]
     return reportes(gastosReportes)
 
 def totalSemana(listaGastos):
@@ -101,8 +103,6 @@ def guardarReporte (opcionGuardar, totalComida, totalTransporte, totalEntretenim
             "Entretenimiento": totalEntretenimiento,
             "Otros": totalOtros
         }
-    else: 
-        print("")
     return temporal
 
 def guardarlos(logsJSON,guardarJSON, temporal, listaGastos):

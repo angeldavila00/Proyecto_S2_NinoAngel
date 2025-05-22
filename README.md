@@ -25,10 +25,6 @@ Este proyecto es una aplicación de consola desarrollada en Python que permite a
 - Se pueden calcular totales de gastos según el periodo (diario, semanal o mensual), con desglose por categorías.
 - El usuario puede generar reportes que resumen sus gastos y optar por guardarlos también en un archivo.
 - Todo el código está modularizado en diferentes archivos `.py` organizados dentro de carpetas, siguiendo buenas prácticas de programación.
-- Este proyecto es ideal como ejercicio práctico para aprender programación en Python, manejo de archivos JSON, y lógica de control de flujo.
-
-
-
 ---
 
 ## 🧩 Funcionalidades Principales
@@ -79,4 +75,4 @@ git clone https://github.com/angeldavila00/Proyecto_S2_NinoAngel.git
 cd Proyecto_S2_NinoAngel
 python - python3: Proyecto_Python_NinoAngel.py
 pip install tabulate
-link para ver el video de la explicación (AÑADE EL LINK DEL VIDEO )
+link para ver el video de la explicación https://youtu.be/YQetV2aazAM

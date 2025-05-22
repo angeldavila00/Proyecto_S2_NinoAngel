@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "comida": 2000,
+        "Transporte": 13000,
+        "Entretenimiento": 0,
+        "Otros": 0
+    }
+]

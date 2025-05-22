@@ -35,7 +35,6 @@ while(booleano):
         unidades=str(input("Cantidad: "))
         categoria=str(input("Categoria ( comida, transporte, entretenimientos, otros):  "))
         info=str(input("Descripcion(opcional): "))
-        print("Ingresa la fecha del gasto: ")
         fecha_actual= str(date.today())
         hora= datetime.now().strftime("%H:%M:%S")
         #Aqui hacemos un for para confirmar si deseas guardar el gasto
@@ -177,7 +176,7 @@ while(booleano):
             print("=============================================")
             opcioncal=int(input())
             if(opcioncal == 1 ):
-                totalDiario(listaGastos)
+                fecha_actual= str(date.today().strftime("%Y-%m-%d"))
                 (totalComida, totalTransporte, totalEntretenimiento, totalOtros, totales )=totalDiario(listaGastos)
                 print("")
                 opcionGuardar= int(input("1. Guardar registro, 2 .No guardar registro: "))
@@ -185,7 +184,7 @@ while(booleano):
                     temporal = guardarReporte (opcionGuardar, totalComida, totalTransporte, totalEntretenimiento, totalOtros)
                     guardarlos(logsJSON,guardarJSON,temporal,listaGastos)
             elif(opcioncal==2):
-                totalSemana(listaGastos)
+                fecha_actual= str(date.today().strftime("%Y-%m-%d"))
                 print("")
                 (totalComida, totalTransporte, totalEntretenimiento, totalOtros, totales )=totalSemana(listaGastos)
                 print("")
@@ -194,10 +193,11 @@ while(booleano):
                     temporal = guardarReporte (opcionGuardar, totalComida, totalTransporte, totalEntretenimiento, totalOtros)
                     guardarlos(logsJSON,guardarJSON,temporal,listaGastos)
             elif(opcioncal==3):
-                totalMes(listaGastos)
+                fecha_actual= str(date.today().strftime("%Y-%m-%d"))
                 print("")
                 (totalComida, totalTransporte, totalEntretenimiento, totalOtros, totales )=totalMes(listaGastos)
                 print("")
+                
                 opcionGuardar= int(input("1. Guardar registro, 2 .No guardar registro: "))
                 if(opcionGuardar==1):
                     temporal = guardarReporte (opcionGuardar, totalComida, totalTransporte, totalEntretenimiento, totalOtros)
